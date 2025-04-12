@@ -23,6 +23,6 @@ jobs:
             echo $GITHUB_JOB
             echo $WF_VAR
             echo $JOB_VAR
-            echo $STEP_JOB
+            echo $STEP_VAR
             echo ${{ vars.CONF_VAR }}
             echo ${{ secrets.A_SECRET }}
