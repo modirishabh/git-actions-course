@@ -1,0 +1,62 @@
+name: variables and secrets
+
+env:
+  WF_VAR: "Workflow level variable"
+
+on:
+  push:
+
+jobs:
+  test_expression:
+    name: job to test expression
+    runs-on: ubuntu-latest
+    env:
+      aBoolean: ${{ false }}
+      aNull: ${{ null }}
+      aNumber: ${{ 42 }}
+      aString: this is a striung
+    steps:
+     - name: test null 
+       if: (env.aNull == null )
+       run: echo this variable is null
+     - name: test boolean
+       if: ${{ fromJSON(env.aBoolean) }}
+       run: echo this job wan't run as our variable is false
+     - name: contains functions
+       if: ${{ contains(env.aString, 'this') }}
+       run : |
+           echo "our string var cantains the word this"
+           echos "this was a typos"
+     -  name: test status check and formate functions
+        if: ${{ failure() }}
+        env:
+          FORMAT_VAR: ${{ formar('GitHub {0} {1} {2}', 'actions', 'is', 'awesome!') }}\
+        run: | 
+          echo "this step runs a special script tp cleanup after the failed step"
+          echo ${{ env.FARMAR_VAR }}
+     -  name: Function and always status check
+        if: ${{ startswith(env.aString, 'this') && always() }}
+        run: sleep 60
+     -  name: test cancel status check
+        if: ${{ cancelled() }}
+        run: echo "this job runs ia s workflow is cancelled , it can also be usedv for clean-up scripts"
+  test_variables:
+    if: (github.event_name == 'pull_request')
+    env:
+      JOB_VAR: "job level variable"
+
+    name: job to test variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: test variables
+        id:  stepVar
+        env:
+          STEP_VAR: "Step level variables"
+        run: |
+            echo ${{ github.actor }}
+            echo $GITHUB_JOB
+            echo $WF_VAR
+            echo $JOB_VAR
+            echo $STEP_VAR
+            echo ${{ vars.CONF_VAR }}
+            echo ${{ secrets.A_SECRET }}
