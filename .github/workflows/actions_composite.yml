@@ -10,7 +10,7 @@ inputs:
     default: "0"
 
 outputs:
-  results:
+  result:
     value: "${{ steps.sum-result.outputs.result }}"
 
 runs:
