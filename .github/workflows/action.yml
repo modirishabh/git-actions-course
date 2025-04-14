@@ -1,4 +1,4 @@
-name: action composite
+name: composite
 description: calculator to test actions
 
 inputs:
@@ -11,15 +11,14 @@ inputs:
 
 outputs:
   result:
-    value: "${{ steps.sum-result.outputs.result }}"
-
+    value: ${{ steps.sum-result.outputs.result }}
 runs:
   using: composite
   steps:
     - shell: bash
       id: sum-result
       run: |
-        num1="${{ inputs.number1 }}"
-        num2="${{ inputs.number2 }}"
+        num1=${{ inputs.number1 }}
+        num2=${{ inputs.number2 }}
         result=$((num1 + num2))
         echo "result=$result" >> "$GITHUB_OUTPUT"
