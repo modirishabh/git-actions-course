@@ -1,0 +1,22 @@
+name: chache
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-chache:
+    name: job to test chache
+    runs-on:  ubuntu-latest
+    steps:
+      -  uses:  actions/checkout@v4
+      - uses: actions/cache@v4
+        id: generateChache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+                  ${{ runner.os }}-pip-
+      -  run: pip install -r requirements.txt
+      -  name:  confirm chache
+         if: steps.generateChache.outputs.chache-hit == 'true'
+         run: echo chach entry found 
