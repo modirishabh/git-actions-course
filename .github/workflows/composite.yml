@@ -1,4 +1,4 @@
-name: composite actions test
+name: composite
 
 on:
   workflow_dispatch:
