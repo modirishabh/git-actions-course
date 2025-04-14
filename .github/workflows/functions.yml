@@ -30,7 +30,7 @@ jobs:
      -  name: test status check and formate functions
         if: ${{ failure() }}
         env:
-          FORMAT_VAR: ${{ formar('GitHub {0} {1} {2}', 'actions', 'is', 'awesome!') }}\
+          FORMAT_VAR: ${{ format('GitHub {0} {1} {2}', 'actions', 'is', 'awesome!') }}\
         run: | 
           echo "this step runs a special script tp cleanup after the failed step"
           echo ${{ env.FARMAR_VAR }}
