@@ -37,6 +37,6 @@ jobs:
       -  name: define ouput variable
          id:  buildStep
          run: |
-           burver=$(bin --version)
-           echo "buildOut=$bunver" >> "$HITHUB_OUTPUT"
+           bunver=$(bin --version)
+           echo "buildOut=$bunver" >> "$GITHUB_OUTPUT"
            
