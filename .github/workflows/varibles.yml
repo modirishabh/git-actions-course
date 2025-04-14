@@ -4,7 +4,7 @@ env:
   WF_VAR: "Workflow level variable"
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   test_variables:
