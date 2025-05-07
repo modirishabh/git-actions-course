@@ -1,6 +1,6 @@
 # Git Actions Course
 
-### Git Command Summary
+## Git Command Summary
 
 - **git init:** Initializes a new Git repository.
 - **git config:** Sets the username and email for commits.
@@ -15,7 +15,7 @@
 - **git pull:** Fetches and merges commits from the remote repository.
 - **git push:** Uploads local commits to the remote repository.
 
-### GitHub's Main Features
+## GitHub's Main Features
 
 - **Repository Hosting:** GitHub hosts Git repositories, allowing you to view and create branches, commits, tags, and files.
 - **Collaboration:** Features like forking repositories, starring, and watching repositories for updates facilitate collaboration.
@@ -25,7 +25,7 @@
 - **Security and Insights:** Provides security reports and alerts for vulnerabilities, and insights for tracking repository activity.
 - **Settings:** You can configure various repository-related features, including visibility, environments, secrets, and variables.
 
-### Explore the GitHub CLI
+## Explore the GitHub CLI
 
 - **GitHub CLI Overview:** The GitHub Command Line Interface (CLI) allows you to interact with GitHub directly from your terminal.
 - **Authentication:** Use the `gh auth` command to log in with your GitHub credentials.
@@ -33,7 +33,7 @@
 - **Available Commands:** Offers commands for interacting with repositories, pull requests, issues, releases, and more, including `gh workflow` and `gh run`.
 - **API Command:** The `gh api` command enables HTTP requests to GitHub API endpoints for automation and data retrieval.
 
-### Understand Semantic Versioning
+## Understand Semantic Versioning
 
 - **Semantic Versioning:** A versioning scheme that clarifies the changes in software releases with three parts: major, minor, and patch.
   - **Major version:** Changes that break backwards compatibility.
