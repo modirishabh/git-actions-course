@@ -130,3 +130,72 @@ Create a __tests__ folder with a file appOperations.test.js to write test cases 
 **Add Code Coverage**: Add the --coverage flag to the test command to generate a code coverage report.
 **Automate with GitHub Actions**: Create a .github/workflows directory with a YAML file to define a workflow for running tests and generating code coverage reports automatically on pull requests.
 **Enhance Workflow**: Use a GitHub Action to publish the code coverage report to pull requests and set a coverage threshold.
+
+**8.3 Code Scanning **
+**Purpose**: Code scanning helps identify security vulnerabilities and coding errors in your GitHub repository. This ensures your code is secure and of high quality.
+
+**How It Works**
+Queries and CodeQL: Code scanning uses queries to detect specific vulnerabilities. CodeQL is the tool that generates a database representing your codebase and runs these queries.
+Custom Queries: You can use pre-written queries by GitHub experts or write your own to tailor the scanning to your needs.
+
+**Setting Up Code Scanning**
+**Enabling Feature**: You need to enable code scanning in the repository settings.
+**Default Setup:** By default, code scanning runs on each push to the default branch, on pull requests, and on a weekly schedule.
+**Advanced Setup**: For more customization, you can configure advanced settings or run CodeQL CLI in an external CI system and upload results to GitHub.
+
+**Alerts and Visualization**
+Alerts: When a vulnerability or error is found, an alert is created.
+Security Tab: You can view these alerts in the Security tab of your GitHub repository.
+
+**Supported Languages**
+Languages: CodeQL supports several languages, including C, C++, C#, Go, Java, JavaScript, Python, Ruby, and Swift.
+
+**Practical Application**
+Integration: You can integrate third-party code scanning tools within GitHub Actions or external CI systems, making it flexible and adaptable to your workflow.
+
+**8.4 Dependabot**
+
+**Purpose**: Dependabot helps keep your code's dependencies (libraries and packages your code relies on) up to date, ensuring your code is secure and runs smoothly.
+**How It Works:**
+Dependabot scans your repository for outdated dependencies.
+It creates pull requests to update these dependencies automatically.
+You can configure it using a dependabot.yml file to specify settings like the package manager, update schedule, and reviewers
+**Security Updates:**
+Version Updates: Keeps all dependencies up to date, even if there are no known vulnerabilities.
+Security Updates: Specifically targets dependencies with known vulnerabilities and updates them to secure versions.
+
+**8.5 Secret Scanning**
+**Purpose**: Secret scanning identifies sensitive information (like API keys, tokens, and private keys) that might have been accidentally committed to your repository.
+**How It Works:**
+It scans the entire Git history, including branches, issues, pull requests, and discussions.
+When it finds patterns matching known secrets, it creates alerts in the Security tab of your repository.
+
+**8.6 CODEOWNERS File**
+**Purpose**: The CODEOWNERS file is used to define the users or teams responsible for specific sections of code in your repository. This ensures that the right people review changes made to the code, improving code quality and accountability.
+**File Location**: The CODEOWNERS file can be placed in one of the following directories in your repository: 
+1)Root directory
+2).github directory
+3)docs directory
+
+**Structure and Rules**
+**File Naming**: The file must be named CODEOWNERS in capital letters.
+**Ownership Rules**: Each line in the CODEOWNERS file specifies a file path or pattern followed by one or more owners.
+**Example Patterns:**
+/ - The user repo-owner is the default owner of everything in the repository.
+/scripts/ - The users scripts-owner and anotheruser@email.com are the owners of any file in the scripts directory.
+/apps/* - The user someuser is the owner of all files in the apps directory, but not its subdirectories.
+*.js - The user js-owner is the owner of all JavaScript files in the repository.
+logs/ - The user log-owner is the owner of any directory named logs throughout the whole repository.
+
+**Precedence of Rules**
+If multiple patterns match a file or directory, the last one in the CODEOWNERS file takes precedence.
+
+**Permissions**
+Users or teams added to these rules must have explicit write access to the repository.
+
+**Set up code owners**
+1) Create a New Branch: Start by creating a new branch named add-codeowners in your repository.
+2) Add CODEOWNERS File: Create a CODEOWNERS file at the root of the repository and define the ownership rules, such as assigning the front-end-team to review changes to the CSS folder.
+3) Commit and Push Changes: Commit the changes, push the branch to GitHub, and create a pull request.
+4) Review and Merge: Review the pull request, ensure the correct users or teams have write access, and merge the changes.
+
