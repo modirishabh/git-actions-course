@@ -47,8 +47,13 @@ Learn how to control job execution by setting up dependencies, outputs, and job 
 
 #### 6.1 Explore job concurrency, outputs, and dependencies
 - **Job Dependencies**: Jobs can be configured to run sequentially using the `needs` keyword, ensuring one job completes before another starts.
+                      example  Imagine you have three tasks: Task A, Task B, and Task C. By default, all tasks start at the same time. But you can set it up so that Task B waits for Task A to finish before starting, and Task                                  C waits for Task B. This is done using the "needs" keyword. If Task A fails, Task B won't start unless you specify it should always run.
+  
 - **Job Outputs**: Outputs allow data sharing between jobs, but are not meant for artifacts like binaries or reports.
+                   example Think of outputs as messages passed between tasks. For example, Task A can produce a result (like a number or text) that Task B will need. Task B can then use this result to complete its work. This                             ensures data flows correctly between tasks.
 - **Concurrency Groups**: Concurrency groups ensure only one job or workflow in the group runs at a time, preventing resource contention and improving performance.
+                    example Sometimes, you might want to ensure that only one task runs at a time to avoid overloading the system. You can group tasks together and set rules so that only one task from the group runs at any                                 given time. This is useful when tasks require a lot of resources.
+
 
 #### 6.3 Run jobs within containers
 - **Container Usage**: Running jobs within containers allows you to start with the necessary environment and tools, making the process faster and more efficient.
