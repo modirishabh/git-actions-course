@@ -1,5 +1,45 @@
 # Git Actions Course
 
+### Git Command Summary
+
+- **git init:** Initializes a new Git repository.
+- **git config:** Sets the username and email for commits.
+- **git clone:** Copies a remote repository to your local system.
+- **git remote:** Views or modifies the URL of the remote repository.
+- **git add:** Adds files to the staging area.
+- **git commit:** Bundles changes into a snapshot with a descriptive message.
+- **git branch:** Creates, lists, or deletes branches.
+- **git checkout:** Switches between branches.
+- **git merge:** Combines changes from one branch into another.
+- **git fetch:** Downloads latest commits without merging.
+- **git pull:** Fetches and merges commits from the remote repository.
+- **git push:** Uploads local commits to the remote repository.
+
+### GitHub's Main Features
+
+- **Repository Hosting:** GitHub hosts Git repositories, allowing you to view and create branches, commits, tags, and files.
+- **Collaboration:** Features like forking repositories, starring, and watching repositories for updates facilitate collaboration.
+- **Issues and Pull Requests:** Issues are action items or tasks, while pull requests are used for code review and merging branches.
+- **GitHub Actions:** This feature allows you to create workflows to automate tasks such as build, release, and deploy.
+- **Project Management and Documentation:** GitHub offers project management tools like boards and roadmaps, as well as a Wiki for documentation.
+- **Security and Insights:** Provides security reports and alerts for vulnerabilities, and insights for tracking repository activity.
+- **Settings:** You can configure various repository-related features, including visibility, environments, secrets, and variables.
+
+### Explore the GitHub CLI
+
+- **GitHub CLI Overview:** The GitHub Command Line Interface (CLI) allows you to interact with GitHub directly from your terminal.
+- **Authentication:** Use the `gh auth` command to log in with your GitHub credentials.
+- **Configuration:** The `gh config` command lets you configure settings like Git protocol, browser for URLs, and text editor.
+- **Available Commands:** Offers commands for interacting with repositories, pull requests, issues, releases, and more, including `gh workflow` and `gh run`.
+- **API Command:** The `gh api` command enables HTTP requests to GitHub API endpoints for automation and data retrieval.
+
+### Understand Semantic Versioning
+
+- **Semantic Versioning:** A versioning scheme that clarifies the changes in software releases with three parts: major, minor, and patch.
+  - **Major version:** Changes that break backwards compatibility.
+  - **Minor version:** New features or functionality that are backwards compatible.
+  - **Patch version:** Bug fixes or minor changes that do not alter functionality.
+- **Dependency Management:** Using tools like PIP (Python), NPM (JavaScript), and Maven (Java) to manage software dependencies.
 ## 6. Control Job Execution
 
 ### 6. Control Job Execution
