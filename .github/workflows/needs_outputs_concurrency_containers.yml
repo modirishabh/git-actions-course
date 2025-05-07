@@ -1,47 +1,47 @@
 name: jobs
 
 on:
-  workflow_dispatch: # This event triggers the workflow manually from GitHub UI
+  workflow_dispatch:                                           # This event triggers the workflow manually from GitHub UI
 
 jobs:
   # Job 1 with concurrency to ensure one job runs at a time within the group 'test'
   concurrency-job2:
-    runs-on: ubuntu-latest # Specifies the runner environment to be the latest version of Ubuntu
-    concurrency: # Ensures that only a single job or workflow using the same concurrency group will run at a time
-      group: test # The concurrency group name
+    runs-on: ubuntu-latest                                      # Specifies the runner environment to be the latest version of Ubuntu
+    concurrency:                                                # Ensures that only a single job or workflow using the same concurrency group will run at a time
+      group: test                                               # The concurrency group name
     steps:
-      - run: sleep 15 # The job will simply wait for 15 seconds
+      - run: sleep 15                                           # The job will simply wait for 15 seconds
       
   # Job 2 with concurrency to ensure one job runs at a time within the group 'test'
   concurrency-job1:
-    runs-on: ubuntu-latest # Specifies the runner environment to be the latest version of Ubuntu
-    concurrency: # Ensures that only a single job or workflow using the same concurrency group will run at a time
-      group: test # The concurrency group name
+    runs-on: ubuntu-latest                                      # Specifies the runner environment to be the latest version of Ubuntu
+    concurrency:                                                # Ensures that only a single job or workflow using the same concurrency group will run at a time
+      group: test                                               # The concurrency group name
     steps:
-      - run: sleep 15 # The job will simply wait for 15 seconds
+      - run: sleep 15                                           # The job will simply wait for 15 seconds
       
   # Deployment job that depends on the completion of the build job
-  deploy-job:
-    name: deploy-job # This names the job 'deploy-job'
-    runs-on: ubuntu-latest # Specifies the runner environment to be the latest version of Ubuntu
-    needs: build-job # This job needs to wait for 'build-job' to complete before it starts
+  deploy-job2:
+    name: deploy-job                                            # This names the job 'deploy-job'
+    runs-on: ubuntu-latest                                      # Specifies the runner environment to be the latest version of Ubuntu
+    needs: build-job1                                           # This job needs to wait for 'build-job1' to complete before it starts
     steps:
       - name: test build output
-        run: echo ${{ needs.build-job.outputs.build-outputs }} # This step echoes the output from 'build-job'
+        run: echo ${{ needs.build-job1.outputs.build-outputs }} # This step echoes the output from 'build-job'
          
   # Build job that runs in a container and produces an output variable
-  build-job:
+  build-job1:
     outputs:
-      build-outputs: ${{steps.buildStep.outputs.buildOut }}        # Defines the output of this job to be used by below build job "id:buildStep" 
+      build-outputs: ${{steps.buildStep.outputs.buildOut }}     # Defines the output of this job to be used by below build job "id:buildStep" 
    
     # This names the job 'build job'
     name: build job 
-    runs-on: ubuntu-latest # Specifies the runner environment to be the latest version of Ubuntu
+    runs-on: ubuntu-latest                                      # Specifies the runner environment to be the latest version of Ubuntu
     container:
-      image: oven/bun:slim # Specifies the container image to use for the job
+      image: oven/bun:slim                                      # Specifies the container image to use for the job
     steps:
       - name: define output variable
-        id: buildStep                              # The ID of the step, which can be used to reference its outputs
+        id: buildStep                                          # The ID of the step, which can be used to reference its outputs
         run: |
           bunver=$(bun --version) # Gets the version of bun
           echo "buildOut=$bunver" >> "$GITHUB_OUTPUT"               # Sets the output variable 'buildOut'
