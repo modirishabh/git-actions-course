@@ -60,21 +60,28 @@ Learn how to control job execution by setting up dependencies, outputs, and job 
 - **Container Configuration**: You can specify the container image within the container map, and pull images from different container registries, including Docker Hub and GitHub Container Registry.
 - **Additional Settings**: You can configure settings like credentials for private registries, environment variables, ports, and mount volumes to enhance the container's functionality.
 
-#### 6.4 Control job execution
-- **Job Dependencies**: Use the `needs` keyword to ensure that certain jobs run only after others have completed.
-- **Job Outputs**: Define and use output variables to share data between jobs.
-- **Concurrency Groups**: Manage job execution order within concurrency groups to prevent multiple jobs from running simultaneously when they share resources.
-
 ### 6.5 Explore matrix strategies
-- **Matrix Strategies**: Allows you to run a job with different variations such as environment, runtime, tools, and configurations, which is useful for testing and building on diverse platforms.
+- **Matrix Strategies**: This allows you to run the same job in different environments or configurations. For example, you can test your code on multiple versions of a programming language or different operating systems.
 - **Configuration**: Define a strategy map and within it, a matrix map with variables to create different job combinations. Use the `include` and `exclude` lists to manage these combinations.
 - **Strategy Settings**: Customize matrix job behavior with settings like `fail-fast` to cancel jobs on failure and `max-parallel` to define the number of jobs running simultaneously.
 
 #### 6.6 Implement matrix strategies
 - **Creating a Repository**: Set up a new repository with a README file and create a workflow file in the `.github/workflows/` directory.
-- **Defining Matrix Strategy**: Configure the matrix strategy with different runners (e.g., `ubuntu-latest`, `windows-latest`, `macos-latest`) and Python versions (e.g., 3.11, 3.12, 3.13).
-- **Include and Exclude Configurations**: Use `include` to add specific configurations and `exclude` to remove certain combinations from the matrix.
-- **Job Execution**: Define steps to run the job, specifying the runner and Python version from the matrix context, and execute the workflow to see the different job combinations.
+- **Defining Matrix Strategy**: Defining a Matrix: You create a strategy map and within it, a matrix map. The matrix map includes variables that define the different combinations you want to test. 
+"""
+For example:
+yaml
+strategy:
+matrix:
+os: [ubuntu-latest, windows-latest]
+node: [12, 14]
+"""
+This will run the job on both Ubuntu and Windows, with Node.js versions 12 and 14.
+
+- **Include and Exclude List**: You can add more combinations with the **include** list or remove some with the **exclude** list. This helps you customize which combinations to run.
+- **Settings**:
+    **fail-fast**: If set to true, it stops all jobs if one fails.
+    **max-parallel**: Limits the number of jobs running at the same time.
 
 ## 7 Integrate GitHub Actions, Create Custom Actions, Optimize Workflows
 
