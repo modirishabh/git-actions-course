@@ -32,14 +32,16 @@ jobs:
   # Build job that runs in a container and produces an output variable
   build-job:
     outputs:
-      build-outputs: ${{steps.buildStep.outputs.buildOut }} # Defines the output of this job to be used by other jobs
-    name: build job # This names the job 'build job'
+      build-outputs: ${{steps.buildStep.outputs.buildOut }}        # Defines the output of this job to be used by below build job "id:buildStep" 
+   
+    # This names the job 'build job'
+    name: build job 
     runs-on: ubuntu-latest # Specifies the runner environment to be the latest version of Ubuntu
     container:
       image: oven/bun:slim # Specifies the container image to use for the job
     steps:
       - name: define output variable
-        id: buildStep # The ID of the step, which can be used to reference its outputs
+        id: buildStep                              # The ID of the step, which can be used to reference its outputs
         run: |
           bunver=$(bun --version) # Gets the version of bun
-          echo "buildOut=$bunver" >> "$GITHUB_OUTPUT" # Sets the output variable 'buildOut'
+          echo "buildOut=$bunver" >> "$GITHUB_OUTPUT"               # Sets the output variable 'buildOut'
