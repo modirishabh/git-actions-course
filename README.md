@@ -106,10 +106,27 @@ Using Actions: The video shows how to add actions to your workflow from the GitH
 **Dockerfile Creation**: Add a Dockerfile specifying the base image (e.g., alpine:3.10), copy the entrypoint.sh script into the container, and set the entry point.
 **Metadata and Workflow**: Create an action.yml metadata file to define inputs, outputs, and Docker settings. Then, add a workflow file to test the Docker action by running it on a GitHub runner.
 
-****8 Continuous Integration ****
-
+**8 Continuous Integration **
 **Continuous Integration (CI)**: This is a process where you regularly test your code to make sure it works correctly. Think of it as a way to catch mistakes early.
 **Unit Testing and Code Coverage**: These are methods to check if small parts of your code work as expected and how much of your code is tested.
 **Code Scanning**: This helps find errors and security issues in your code automatically.
 **Dependabot and Secret Scanning**: Dependabot helps keep your code's dependencies up to date, and secret scanning checks for sensitive information in your code.
 **Code Owners and Branch Protection**: These features help manage who is responsible for different parts of the code and protect important parts of your code from unwanted changes.
+
+**8.1 Set up unit testing and code coverage, part 1**
+**Unit Testing**: Helps ensure that individual units of code function correctly by catching bugs early. It involves writing test cases to verify that the code produces the expected results.
+**Code Coverage:** Measures how much of your code is tested. It tracks lines, branches, and functions that have tests, helping identify untested areas that might contain bugs.
+**Tools**: Various tools are available for unit testing and code coverage, depending on the programming language (e.g., JavaScript, Python, Java).
+
+**8.2 Set up unit testing and code coverage, part 2**
+**Create a Repository**: Go to GitHub, create a new public repository with a README file and a .gitignore file for Node.js.
+**Clone the Repository:** Copy the repository URL and clone it using Visual Studio Code.
+**Set Up the Project**: Open the terminal in VS Code and initialize the project with npm init -y.
+                    Install Jest for unit testing with npm install --save-dev jest.
+**Write Code and Tests:**
+Create a folder named src and add a file appOperations.js with a function to multiply two numbers.
+Create a __tests__ folder with a file appOperations.test.js to write test cases for your function.
+**Run Tests**: Configure Jest in package.json and run npm test to execute the tests.
+**Add Code Coverage**: Add the --coverage flag to the test command to generate a code coverage report.
+**Automate with GitHub Actions**: Create a .github/workflows directory with a YAML file to define a workflow for running tests and generating code coverage reports automatically on pull requests.
+**Enhance Workflow**: Use a GitHub Action to publish the code coverage report to pull requests and set a coverage threshold.
