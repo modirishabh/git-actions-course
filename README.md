@@ -53,3 +53,55 @@
 Creating a Repository: The video demonstrates how to create a new public repository, including adding a README file, a .gitignore file, and a license.
 Setting Up a Workflow File: It explains how to create a workflow file in the .github/workflows directory, specifying the event trigger and job details.
 Using Actions: The video shows how to add actions to your workflow from the GitHub Marketplace, including the checkout action, and how to configure its parameters.
+
+**7.3 Learn about artifacts and cache**
+**Artifacts**: Used to store files produced by your jobs, such as logs, executables, and reports. They are retained for 90 days by default but can be customized.
+**Cache**: Ideal for storing files that don't change often, like packages and dependencies. This helps speed up workflow runs by skipping the download step. The cache size is limited to 10GB and entries not accessed in over seven days are automatically removed.
+**Management**: Both artifacts and cache can be managed via the GitHub web interface, REST API, and GitHub CLI.
+
+**7.4 Share data between jobs with artifacts_LAB**
+**Creating a Repository and Workflow**: Set up a new repository and create a workflow file named artifacts.yml in the .github/workflows/ directory.
+**Uploading Artifacts**: Define a job to generate and upload an artifact (e.g., myArtifact.txt) using the upload-artifact GitHub Action.
+**Downloading Artifacts**: Define another job to download the previously uploaded artifact using the download-artifact GitHub Action, ensuring job dependencies are correctly set with the needs keyword.
+
+**7.5** **Optimize your workflow with cache-LAB**
+**Creating a Repository**: You start by creating a new public repository and adding a README file.
+**Setting Up Requirements**: Create a requirements.txt file to list the libraries needed for your project.
+**Creating a Workflow File**: Set up a workflow file (cache.yml) with the necessary components like event triggers and job sections.
+**Using Cache Action**: Implement the cache action to store and retrieve dependencies, optimizing the workflow by reducing the need to download dependencies repeatedly.
+
+**7.6 Explore the metadata file and composite actions, part 1**
+**Composite Actions**: These bundle several workflow steps into a single reusable action, making workflows more modular and easier to manage.
+**Metadata File (action.yaml)**: This file defines the action's inputs, outputs, and configuration. Key sections include:
+**Inputs**: Optional parameters passed to the action, with default values and descriptions.
+**Outputs**: Optional data produced by the action, identified by an ID and description.
+**Runs Section**: Specifies the type of action (composite in this case) and includes the steps to be executed.
+
+**7.7 Explore the metadata file and composite actions, part 2**
+**Creating a Composite Action**: The video demonstrates how to create a composite action by setting up a new repository and adding an action.yml file at the root level.
+**Defining Metadata**: It covers defining the main components of the metadata file, including inputs, outputs, and steps for the composite action.
+**Testing the Composite Action**: The video shows how to create a workflow file to test the composite action, ensuring it runs correctly and outputs the expected results.
+
+**7.8 Learn custom JavaScript action**
+**Creating JavaScript Actions**: To create a JavaScript GitHub action, you need Node.js installed on your system. You will also need to install the core and GitHub packages from the actions toolkit to interact with GitHub Actions context and workflow commands.
+**Metadata File**: The metadata file for JavaScript actions includes inputs, outputs, and the runs section, where you specify the runtime and the JavaScript file to execute.
+**Using Vercel NCC**: This package is useful for compiling Node.js modules into a single file, simplifying the process by avoiding the need to upload the entire node_modules directory.
+
+**7.9 Create a JavaScript action**
+**Repository Setup**: Create a new repository with a README and a .gitignore file for Node.js. Install Node.js and VS Code.
+**Initialize Project**: Clone the repository, initialize it with npm init -y, and create an action.yml file with necessary metadata.
+**Install Packages**: Install required packages using npm install @actions/core @actions/github and npm install -g @vercel/ncc.
+**Create Action**: Write the index.js file to define the action, including importing necessary packages, handling inputs, and defining outputs.
+**Compile and Commit**: Compile the index.js file using ncc build, update the .gitignore file, and commit the changes to the repository.
+**Test Action**: Create a workflow file to test the action by defining a job that uses the action and verifies its output.
+
+**7.10 Examine custom Docker container actions**
+**Docker Container Action**: This type of GitHub action builds an image from your Dockerfile, specifying the operating system, tools, and dependencies needed for your task.
+**Metadata File Configuration**: You need a metadata file to configure inputs, outputs, and action settings. The using key must be set to Docker, and you can specify environment variables, arguments, entry points, and pre/post-entry points.
+**File Acces**s: Outputs can be accessed through the GitHub output environment file, and files generated in the container can be accessed via the GitHub/workspace path.
+**Dockerfile Requirements**: The Dockerfile name must start with a capital "D," and the first instruction should be the FROM instruction.
+
+**7.11 "Create Docker container actions**
+**Repository Setup**: Create a new public repository with a README file and add an entrypoint.sh script to handle inputs and outputs.
+**Dockerfile Creation**: Add a Dockerfile specifying the base image (e.g., alpine:3.10), copy the entrypoint.sh script into the container, and set the entry point.
+**Metadata and Workflow**: Create an action.yml metadata file to define inputs, outputs, and Docker settings. Then, add a workflow file to test the Docker action by running it on a GitHub runner.
