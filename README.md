@@ -95,129 +95,122 @@ Learn how to control job execution by setting up dependencies, outputs, and job 
 - **Dockerfile Creation**: Add a Dockerfile specifying the base image (e.g., `alpine:3.10`), copy the `entrypoint.sh` script into the container, and set the entry point.
 - **Metadata and Workflow**: Create an `action.yml` metadata file to define inputs, outputs, and Docker settings. Then, add a workflow file to test the Docker action by running it on a GitHub runner.
 
-**8 Continuous Integration **
-**Continuous Integration (CI)**: This is a process where you regularly test your code to make sure it works correctly. Think of it as a way to catch mistakes early.
-**Unit Testing and Code Coverage**: These are methods to check if small parts of your code work as expected and how much of your code is tested.
-**Code Scanning**: This helps find errors and security issues in your code automatically.
-**Dependabot and Secret Scanning**: Dependabot helps keep your code's dependencies up to date, and secret scanning checks for sensitive information in your code.
-**Code Owners and Branch Protection**: These features help manage who is responsible for different parts of the code and protect important parts of your code from unwanted changes.
+# 8 Continuous Integration
 
-**8.1 Set up unit testing and code coverage, part 1**
-**Unit Testing**: Helps ensure that individual units of code function correctly by catching bugs early. It involves writing test cases to verify that the code produces the expected results.
-**Code Coverage:** Measures how much of your code is tested. It tracks lines, branches, and functions that have tests, helping identify untested areas that might contain bugs.
-**Tools**: Various tools are available for unit testing and code coverage, depending on the programming language (e.g., JavaScript, Python, Java).
+**Continuous Integration (CI):** This is a process where you regularly test your code to make sure it works correctly. Think of it as a way to catch mistakes early.
 
-**8.2 Set up unit testing and code coverage, part 2**
-**Create a Repository**: Go to GitHub, create a new public repository with a README file and a .gitignore file for Node.js.
-**Clone the Repository:** Copy the repository URL and clone it using Visual Studio Code.
-**Set Up the Project**: Open the terminal in VS Code and initialize the project with npm init -y.
-                    Install Jest for unit testing with npm install --save-dev jest.
-**Write Code and Tests:**
-Create a folder named src and add a file appOperations.js with a function to multiply two numbers.
-Create a __tests__ folder with a file appOperations.test.js to write test cases for your function.
-**Run Tests**: Configure Jest in package.json and run npm test to execute the tests.
-**Add Code Coverage**: Add the --coverage flag to the test command to generate a code coverage report.
-**Automate with GitHub Actions**: Create a .github/workflows directory with a YAML file to define a workflow for running tests and generating code coverage reports automatically on pull requests.
-**Enhance Workflow**: Use a GitHub Action to publish the code coverage report to pull requests and set a coverage threshold.
+- **Unit Testing and Code Coverage:** These are methods to check if small parts of your code work as expected and how much of your code is tested.
+- **Code Scanning:** This helps find errors and security issues in your code automatically.
+- **Dependabot and Secret Scanning:** Dependabot helps keep your code's dependencies up to date, and secret scanning checks for sensitive information in your code.
+- **Code Owners and Branch Protection:** These features help manage who is responsible for different parts of the code and protect important parts of your code from unwanted changes.
 
-**8.3 Code Scanning **
-**Purpose**: Code scanning helps identify security vulnerabilities and coding errors in your GitHub repository. This ensures your code is secure and of high quality.
+## 8.1 Set up unit testing and code coverage, part 1
 
-**How It Works**
-Queries and CodeQL: Code scanning uses queries to detect specific vulnerabilities. CodeQL is the tool that generates a database representing your codebase and runs these queries.
-Custom Queries: You can use pre-written queries by GitHub experts or write your own to tailor the scanning to your needs.
+- **Unit Testing:** Helps ensure that individual units of code function correctly by catching bugs early.
+- **Code Coverage:** Measures how much of your code is tested.
 
-**Setting Up Code Scanning**
-**Enabling Feature**: You need to enable code scanning in the repository settings.
-**Default Setup:** By default, code scanning runs on each push to the default branch, on pull requests, and on a weekly schedule.
-**Advanced Setup**: For more customization, you can configure advanced settings or run CodeQL CLI in an external CI system and upload results to GitHub.
+**Tools:** Various tools are available for unit testing and code coverage, depending on the programming language (e.g., JavaScript, Python, Java).
 
-**Alerts and Visualization**
-Alerts: When a vulnerability or error is found, an alert is created.
-Security Tab: You can view these alerts in the Security tab of your GitHub repository.
+## 8.2 Set up unit testing and code coverage, part 2
 
-**Supported Languages**
-Languages: CodeQL supports several languages, including C, C++, C#, Go, Java, JavaScript, Python, Ruby, and Swift.
+- **Create a Repository:** Go to GitHub, create a new public repository with a README file and a .gitignore file for Node.js.
+- **Clone the Repository:** Copy the repository URL and clone it using Visual Studio Code.
+- **Set Up the Project:** Open the terminal in VS Code and initialize the project with `npm init -y`. Install Jest for unit testing with `npm install --save-dev jest`.
+- **Write Code and Tests:** Create a folder named `src` and add a file `appOperations.js` with a function to multiply two numbers. Create a `tests` folder with a file `appOperations.test.js` to write test cases for your function.
+- **Run Tests:** Configure Jest in `package.json` and run `npm test` to execute the tests.
+- **Add Code Coverage:** Add the `--coverage` flag to the test command to generate a code coverage report.
+- **Automate with GitHub Actions:** Create a `.github/workflows` directory with a YAML file to define a workflow for running tests and generating code coverage reports automatically on pull requests.
+- **Enhance Workflow:** Use a GitHub Action to publish the code coverage report to pull requests and set a coverage threshold.
 
-**Practical Application**
-Integration: You can integrate third-party code scanning tools within GitHub Actions or external CI systems, making it flexible and adaptable to your workflow.
+## 8.3 Code Scanning
 
-**8.4 Dependabot**
+**Purpose:** Code scanning helps identify security vulnerabilities and coding errors in your GitHub repository.
 
-**Purpose**: Dependabot helps keep your code's dependencies (libraries and packages your code relies on) up to date, ensuring your code is secure and runs smoothly.
 **How It Works:**
-Dependabot scans your repository for outdated dependencies.
-It creates pull requests to update these dependencies automatically.
-You can configure it using a dependabot.yml file to specify settings like the package manager, update schedule, and reviewers
-**Security Updates:**
-Version Updates: Keeps all dependencies up to date, even if there are no known vulnerabilities.
-Security Updates: Specifically targets dependencies with known vulnerabilities and updates them to secure versions.
+- **Queries and CodeQL:** Code scanning uses queries to detect specific vulnerabilities. CodeQL is the tool that generates a database representing your codebase and runs these queries.
+- **Custom Queries:** You can use pre-written queries by GitHub experts or write your own to tailor the scanning to your needs.
 
-**8.5 Secret Scanning**
-**Purpose**: Secret scanning identifies sensitive information (like API keys, tokens, and private keys) that might have been accidentally committed to your repository.
-**How It Works:**
-It scans the entire Git history, including branches, issues, pull requests, and discussions.
-When it finds patterns matching known secrets, it creates alerts in the Security tab of your repository.
+**Setting Up Code Scanning:**
+- **Enabling Feature:** You need to enable code scanning in the repository settings.
+- **Default Setup:** By default, code scanning runs on each push to the default branch, on pull requests, and on a weekly schedule.
+- **Advanced Setup:** For more customization, you can configure advanced settings or run CodeQL CLI in an external CI system and upload results to GitHub.
 
-**8.6 CODEOWNERS File**
-**Purpose**: The CODEOWNERS file is used to define the users or teams responsible for specific sections of code in your repository. This ensures that the right people review changes made to the code, improving code quality and accountability.
-**File Location**: The CODEOWNERS file can be placed in one of the following directories in your repository: 
-1)Root directory
-2).github directory
-3)docs directory
+**Alerts and Visualization:**
+- **Alerts:** When a vulnerability or error is found, an alert is created.
+- **Security Tab:** You can view these alerts in the Security tab of your GitHub repository.
 
-**Structure and Rules**
-**File Naming**: The file must be named CODEOWNERS in capital letters.
-**Ownership Rules**: Each line in the CODEOWNERS file specifies a file path or pattern followed by one or more owners.
+**Supported Languages:** Languages that CodeQL supports include C, C++, C#, Go, Java, JavaScript, Python, Ruby, and Swift.
+
+**Practical Application Integration:** You can integrate third-party code scanning tools within GitHub Actions or external CI systems, making it flexible and adaptable to your workflow.
+
+## 8.4 Dependabot
+
+**Purpose:** Dependabot helps keep your code's dependencies up to date, ensuring your code is secure and runs smoothly.
+
+**How It Works:** Dependabot scans your repository for outdated dependencies and creates pull requests to update them automatically.
+
+**Settings:** You can configure it using a `dependabot.yml` file.
+
+**Updates:**
+- **Version Updates:** Keeps all dependencies up to date, even if there are no known vulnerabilities.
+- **Security Updates:** Specifically targets dependencies with known vulnerabilities and updates them to secure versions.
+
+## 8.5 Secret Scanning
+
+**Purpose:** Secret scanning identifies sensitive information that might have been accidentally committed to your repository.
+
+**How It Works:** It scans the entire Git history for patterns matching known secrets and creates alerts in the Security tab.
+
+## 8.6 CODEOWNERS File
+
+**Purpose:** The CODEOWNERS file defines the users or teams responsible for specific sections of code.
+
+**Location:** The CODEOWNERS file can be placed in the root, `.github`, or `docs` directory.
+
+**Structure and Rules:**
+- **File Naming:** Must be named CODEOWNERS in capital letters.
+- **Ownership Rules:** Each line specifies a file path or pattern followed by owners.
+
 **Example Patterns:**
-/ - The user repo-owner is the default owner of everything in the repository.
-/scripts/ - The users scripts-owner and anotheruser@email.com are the owners of any file in the scripts directory.
-/apps/* - The user someuser is the owner of all files in the apps directory, but not its subdirectories.
-*.js - The user js-owner is the owner of all JavaScript files in the repository.
-logs/ - The user log-owner is the owner of any directory named logs throughout the whole repository.
+- `/` - The user `repo-owner` is the default owner of everything in the repository.
+- `/scripts/` - The users `scripts-owner` and `anotheruser@email.com` are the owners of any file in the scripts directory.
+- `/apps/*` - The user `someuser` is the owner of all files in the apps directory, but not its subdirectories.
+- `*.js` - The user `js-owner` is the owner of all JavaScript files in the repository.
+- `logs/` - The user `log-owner` is the owner of any directory named logs throughout the whole repository.
 
-**Precedence of Rules**
-If multiple patterns match a file or directory, the last one in the CODEOWNERS file takes precedence.
+**Precedence of Rules:** The last pattern matching a file or directory takes precedence.
 
-**Permissions**
-Users or teams added to these rules must have explicit write access to the repository.
+**Permissions:** Users or teams must have write access to the repository.
 
-**Set up code owners**
-1) Create a New Branch: Start by creating a new branch named add-codeowners in your repository.
-2) Add CODEOWNERS File: Create a CODEOWNERS file at the root of the repository and define the ownership rules, such as assigning the front-end-team to review changes to the CSS folder.
-3) Commit and Push Changes: Commit the changes, push the branch to GitHub, and create a pull request.
-4) Review and Merge: Review the pull request, ensure the correct users or teams have write access, and merge the changes.
+**Set up code owners:**
+1. **Create a New Branch:** Name it `add-codeowners`.
+2. **Add CODEOWNERS File:** Define ownership rules.
+3. **Commit and Push Changes:** Commit the changes, push the branch to GitHub, and create a pull request.
+4. **Review and Merge:** Ensure the correct users or teams have write access, and merge the changes.
 
-**8.7 Branch Protection Overview**
-Branch protection helps enforce certain workflows or set requirements that need to be met before changes can be pushed or merged to a branch, such as the main branch. This ensures that only approved and verified changes are integrated into important branches.
+## 8.7 Branch Protection
 
-**Creating Branch Protection Rules**
-**Location**: Branch protection rules are created in the repository settings.
-**Pattern Matching**: Use the fnmatch syntax (Unix shell-style wildcards like * and ?) to match branch name patterns with rules. For example:
-1) Matches all branches.
-2) *deploy* matches any branch containing the word "deploy".
-3) Test* matches any branch starting with "test".
+**Overview:** Branch protection enforces workflows and requirements before changes can be pushed or merged.
 
-**Branch Protection Settings**
-1)Require Pull Request Reviews: Prevents pull requests from being merged until a specific number of reviewers approve the pull request.
-2)Require Status Checks: Ensures that all checks or statuses pass before collaborators can merge changes into the protected branch.
-3)Require Conversation Resolution: Ensures all comments are addressed or acknowledged before merging.
-4)Require Signed Commits: Enforces the use of a private cryptographic key (like GPG, SSH, or X509) to verify the source of changes.
-5)Require Linear History: Enforces the use of squash merge or rebase merge to maintain a linear history.
-6)Require Merge Queues: Automates pull request merges and ensures that a branch is never broken by incompatible changes.
-7)Require Successful Deployments: Ensures that changes deployed to a test environment are successful before merging to another branch.
-8)Lock Branch: Makes the branch read-only and prevents it from being deleted.
-9)Prevent Bypassing Settings: Stops administrators from bypassing the branch protection settings.
-10)Restrict Who Can Push: Defines which users, teams, or apps can push to a protected branch.
-11)Allow Force Pushes: Allows users to force push to a protected branch (disabled by default).
-12)Allow Deletions: Allows users to delete a protected branch (disabled by default).
+**Creating Branch Protection Rules:**
+- **Location:** In the repository settings.
+- **Pattern Matching:** Use `fnmatch` syntax for branch name patterns.
 
-**Configure branch protection**
-Setting Up Branch Protection: Navigate to the repository settings, click on branches, and add a branch protection rule for the main branch.
-Protection Rules: You can require a pull request before merging, status checks to pass, signed commits, and conversation resolution.
-Approval Requirements: Set the number of required approvers and specify that reviews from code owners are necessary.
-Status Checks: Ensure branches are up-to-date before merging and specify jobs that need to pass (e.g., build and test annotations).
-Testing and Merging: Create a new branch, make changes, and observe how the protection rules enforce the workflow, including requiring successful tests and approvals before merging.
+**Branch Protection Settings:**
+1. **Require Pull Request Reviews:** Prevents unapproved pull requests from being merged.
+2. **Require Status Checks:** Ensures checks pass before merging.
+3. **Require Conversation Resolution:** All comments must be addressed before merging.
+4. **Require Signed Commits:** Enforces the use of cryptographic keys for verification.
+5. **Require Linear History:** Maintains a linear history with squash or rebase merges.
+6. **Require Merge Queues:** Automates merges and ensures compatibility.
+7. **Require Successful Deployments:** Changes must be successful in test environments before merging.
+8. **Lock Branch:** Makes the branch read-only.
+9. **Prevent Bypassing Settings:** Stops administrators from bypassing settings.
+10. **Restrict Who Can Push:** Defines who can push to a protected branch.
+11. **Allow Force Pushes:** (Disabled by default).
+12. **Allow Deletions:** (Disabled by default).
 
-
-
+**Configure branch protection:**
+- **Setting Up:** Navigate to repository settings, branches, and add a rule for the main branch.
+- **Protection Rules:** You can set various requirements like pull request reviews and status checks.
+- **Testing and Merging:** Observe how rules enforce workflow during pull request creation.
