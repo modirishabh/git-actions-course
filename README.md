@@ -199,3 +199,36 @@ Users or teams added to these rules must have explicit write access to the repos
 3) Commit and Push Changes: Commit the changes, push the branch to GitHub, and create a pull request.
 4) Review and Merge: Review the pull request, ensure the correct users or teams have write access, and merge the changes.
 
+**8.7 Branch Protection Overview**
+Branch protection helps enforce certain workflows or set requirements that need to be met before changes can be pushed or merged to a branch, such as the main branch. This ensures that only approved and verified changes are integrated into important branches.
+
+**Creating Branch Protection Rules**
+**Location**: Branch protection rules are created in the repository settings.
+**Pattern Matching**: Use the fnmatch syntax (Unix shell-style wildcards like * and ?) to match branch name patterns with rules. For example:
+1) Matches all branches.
+2) *deploy* matches any branch containing the word "deploy".
+3) Test* matches any branch starting with "test".
+
+**Branch Protection Settings**
+1)Require Pull Request Reviews: Prevents pull requests from being merged until a specific number of reviewers approve the pull request.
+2)Require Status Checks: Ensures that all checks or statuses pass before collaborators can merge changes into the protected branch.
+3)Require Conversation Resolution: Ensures all comments are addressed or acknowledged before merging.
+4)Require Signed Commits: Enforces the use of a private cryptographic key (like GPG, SSH, or X509) to verify the source of changes.
+5)Require Linear History: Enforces the use of squash merge or rebase merge to maintain a linear history.
+6)Require Merge Queues: Automates pull request merges and ensures that a branch is never broken by incompatible changes.
+7)Require Successful Deployments: Ensures that changes deployed to a test environment are successful before merging to another branch.
+8)Lock Branch: Makes the branch read-only and prevents it from being deleted.
+9)Prevent Bypassing Settings: Stops administrators from bypassing the branch protection settings.
+10)Restrict Who Can Push: Defines which users, teams, or apps can push to a protected branch.
+11)Allow Force Pushes: Allows users to force push to a protected branch (disabled by default).
+12)Allow Deletions: Allows users to delete a protected branch (disabled by default).
+
+**Configure branch protection**
+Setting Up Branch Protection: Navigate to the repository settings, click on branches, and add a branch protection rule for the main branch.
+Protection Rules: You can require a pull request before merging, status checks to pass, signed commits, and conversation resolution.
+Approval Requirements: Set the number of required approvers and specify that reviews from code owners are necessary.
+Status Checks: Ensure branches are up-to-date before merging and specify jobs that need to pass (e.g., build and test annotations).
+Testing and Merging: Create a new branch, make changes, and observe how the protection rules enforce the workflow, including requiring successful tests and approvals before merging.
+
+
+
