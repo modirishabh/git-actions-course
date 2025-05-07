@@ -60,6 +60,8 @@ Learn how to control job execution by setting up dependencies, outputs, and job 
 - **Container Configuration**: You can specify the container image within the container map, and pull images from different container registries, including Docker Hub and GitHub Container Registry.
 - **Additional Settings**: You can configure settings like credentials for private registries, environment variables, ports, and mount volumes to enhance the container's functionality.
 
+refer Git Action-Workflows: .github/workflows/needs_outputs_concurrency_containers.yml 
+
 ### 6.5 Explore matrix strategies
 - **Matrix Strategies**: This allows you to run the same job in different environments or configurations. For example, you can test your code on multiple versions of a programming language or different operating systems.
 - **Configuration**: Define a strategy map and within it, a matrix map with variables to create different job combinations. Use the `include` and `exclude` lists to manage these combinations.
@@ -82,6 +84,8 @@ This will run the job on both Ubuntu and Windows, with Node.js versions 12 and 1
 - **Settings**:
     **fail-fast**: If set to true, it stops all jobs if one fails.
     **max-parallel**: Limits the number of jobs running at the same time.
+
+refer Git Action-Workflows: .github/workflows/needs_outputs_concurrency_containers.yml 
 
 ## 7 Integrate GitHub Actions, Create Custom Actions, Optimize Workflows
 
