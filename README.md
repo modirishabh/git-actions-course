@@ -1,7 +1,7 @@
 # gitactions
 
 
-6. **Control Job Execution**
+**6. **Control Job Execution****
 **Control Job Execution:** Learn how to control job execution by setting up dependencies, outputs, and job concurrency.
 **Run Jobs in Container**s: Understand how to run jobs within containers.
 **Matrix Strategies**: Explore matrix strategies to run a job multiple times with different configurations.
