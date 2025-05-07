@@ -105,3 +105,11 @@ Using Actions: The video shows how to add actions to your workflow from the GitH
 **Repository Setup**: Create a new public repository with a README file and add an entrypoint.sh script to handle inputs and outputs.
 **Dockerfile Creation**: Add a Dockerfile specifying the base image (e.g., alpine:3.10), copy the entrypoint.sh script into the container, and set the entry point.
 **Metadata and Workflow**: Create an action.yml metadata file to define inputs, outputs, and Docker settings. Then, add a workflow file to test the Docker action by running it on a GitHub runner.
+
+****8 Continuous Integration ****
+
+**Continuous Integration (CI)**: This is a process where you regularly test your code to make sure it works correctly. Think of it as a way to catch mistakes early.
+**Unit Testing and Code Coverage**: These are methods to check if small parts of your code work as expected and how much of your code is tested.
+**Code Scanning**: This helps find errors and security issues in your code automatically.
+**Dependabot and Secret Scanning**: Dependabot helps keep your code's dependencies up to date, and secret scanning checks for sensitive information in your code.
+**Code Owners and Branch Protection**: These features help manage who is responsible for different parts of the code and protect important parts of your code from unwanted changes.
