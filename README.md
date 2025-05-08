@@ -90,9 +90,22 @@ This will run the job on both Ubuntu and Windows, with Node.js versions 12 and 1
 ## 7 Integrate GitHub Actions, Create Custom Actions, Optimize Workflows
 
 ### 7.1 Understand actions in GitHub Actions
-- **Types of Actions**: GitHub Actions can be custom actions created by you or actions shared by the GitHub community. These include Composite, JavaScript, and Docker container actions.
-- **Usage**: Actions are used within workflows using the `uses` keyword, specifying the owner, repository, and version (tag, hash, or branch).
-- **Parameters**: Customize actions with parameters using the `with` keyword, and for Docker container actions, use the `args` keyword to pass arguments.
+**Actions in GitHub Actions**: Think of actions like functions in programming. They are reusable components that perform specific tasks. You can create custom actions or use ones shared by the GitHub community.
+
+**Types of Actions**: There are three main types:
+**1)Composite Actions**: Combine multiple steps into one action.
+**2)JavaScript Actions**: Use JavaScript to define the action.
+**3)Docker Container Actions:** Run the action inside a Docker container.
+
+**Using Actions**: In your workflow, use the uses keyword to specify an action. For example:
+yaml
+
+name: Hello World
+uses: actions/hello-world-javascript-action@v1.1
+
+This specifies the action to use and its version.
+
+Parameters: Customize actions with parameters using the **with** keyword. For Docker actions, use **args** within **with** to pass arguments.
 
 ### 7.2 Discover and use actions in GitHub Actions
 - **Creating a Repository**: The video demonstrates how to create a new public repository, including adding a README file, a `.gitignore` file, and a license.
