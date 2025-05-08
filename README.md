@@ -107,6 +107,9 @@ This specifies the action to use and its version.
 
 Parameters: Customize actions with parameters using the **with** keyword. For Docker actions, use **args** within **with** to pass arguments.
 
+**refer Git Action-Workflows: .github/workflows/actions.yml**
+
+
 ### 7.2 Discover and use actions in GitHub Actions
 - **Creating a Repository**: The video demonstrates how to create a new public repository, including adding a README file, a `.gitignore` file, and a license.
 - **Setting Up a Workflow File**: It explains how to create a workflow file in the `.github/workflows` directory, specifying the event trigger and job details.
