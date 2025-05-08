@@ -1,26 +1,30 @@
-name: actions
+name: actions                                                               # Name of the workflow
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:                                                        # Event that triggers the workflow manually
 
 jobs:
-  test-actions:
-    name: test-actions
-    runs-on:  ubuntu-latest
-    steps:
-      -  name: list files
-         run:  ls
-      -  name: checkout repo
-         uses: actions/checkout@v4.2.2
-      -  name: ls
-         run:  ls
-      - name: hello-world-action
-        id:  hello-world-action
-        uses: actions/hello-world-javascript-action@main
-        with:
-          who-to-greet: "rishabh"
+  test-actions:                                                              # Job ID
+    name: test-actions                                                       # Name of the job
+    runs-on: ubuntu-latest                                                   # The type of runner that the job will run on
+    steps:                                                                   # Steps represent a sequence of tasks that will be executed as part of the job
+      - name: list files                                                     # Step to list files in the runner's current directory
+        run: ls                                                              # Command that lists the files
 
-      -  name:  time
-         run: echo "'greeting time:' ${{ steps.hello-world-action.outputs.time }}"
-      -  name: docker action
-         uses: docker://hello-world:latest
+      - name: checkout repo                                                   # Step to checkout the repository code
+        uses: actions/checkout@v4.2.2                                         # Uses a pre-built action to checkout the code
+
+      - name: ls                                                               # Step to list files after checkout to show repository content
+        run: ls                                                                 # Command that lists the files
+
+      - name: hello-world-action                                               # Step to run a custom action
+        id: hello-world-action                                                 # Unique identifier for this step
+        uses: actions/hello-world-javascript-action@main                       # Uses a hello world JavaScript action
+        with:                                                                   # Pass input parameters to the action
+          who-to-greet: "rishabh"                                               # The name of the person to greet
+
+      - name: time                                                                 # Step to display the greeting time
+        run: echo "'greeting time:' ${{ steps.hello-world-action.outputs.time }}" # Echoes the output time from the hello-world-action
+
+      - name: docker action                                                       # Step to run a Docker container
+        uses: docker://hello-world:latest                                         # Uses the hello-world Docker image from DockerHub
