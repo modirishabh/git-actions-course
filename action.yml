@@ -1,5 +1,5 @@
-name: DockerAction
-description: calculator to test actions
+name: ContainerAction
+description: calculator to test contanier actions
 
 inputs:
   number1:
@@ -11,14 +11,10 @@ inputs:
 
 outputs:
   result:
-    value: ${{ steps.sum-result.outputs.result }}
+    description: 'output os the sum of the two numbers'
 runs:
-  using: composite
-  steps:
-    - shell: bash
-      id: sum-result
-      run: |
-        num1=${{ inputs.number1 }}
-        num2=${{ inputs.number2 }}
-        result=$((num1 + num2))
-        echo "result=$result" >> "$GITHUB_OUTPUT"
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.number1 }}
+    - ${{ inputs.number2 }}
