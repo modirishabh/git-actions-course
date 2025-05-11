@@ -129,6 +129,58 @@ Both artifacts and cache help in making your CI/CD pipelines more efficient by m
 
 
 ### 7.6 Explore the metadata file and composite actions, part 1
+Composite Actions
+**Composite Actions**: These are reusable actions in GitHub that bundle multiple workflow steps into a single action. This helps in organizing and reusing code efficiently.
+
+**Metadata File (action.yaml)**
+action.yaml: This file, also known as the metadata file, defines the configuration of the composite action. It includes inputs, outputs, and the steps to be executed.
+
+Key Sections of action.yaml
+**Inputs:**
+Definition: Inputs are parameters that you can pass to your action. They are optional.
+Keys: Each input has a key (ID), description, default value (optional), and a required flag (boolean) to specify if the input is mandatory.
+Usage: Inputs are accessed using the inputs context followed by the input ID.
+
+**Outputs**:
+Definition: Outputs are the data that your action can produce and pass to other steps.
+Keys: Each output has an ID, description, and a value which can be a string or an expression.
+Usage: Outputs are defined in the outputs map and accessed using the steps context.
+
+**Runs Section**:
+Definition: This section specifies the type of action and the steps to be executed.
+Using Key: For composite actions, this is set to composite.
+Steps: The steps are similar to those in a workflow file and include uses and run keys.
+**
+Example Breakdown**
+Input Section:
+yaml
+inputs:
+example_input:
+description: 'An example input'
+required: true
+default: 'default_value'
+
+Here, example_input is the key, with a description, a required flag set to true, and a default value.
+
+Output Section:
+yaml
+outputs:
+example_output:
+description: 'An example output'
+value: ${{ steps.step_id.outputs.some_output }}
+
+example_output is the key, with a description and a value that references an output from a specific step.
+
+Runs Section:
+yaml
+runs:
+using: 'composite'
+steps:
+- run: echo "Hello, world!"
+
+Specifies that the action is composite and includes a step that runs a simple echo command.
+
+
 - **Composite Actions**: These bundle several workflow steps into a single reusable action, making workflows more modular and easier to manage.
 - **Metadata File (`action.yaml`)**: This file defines the action's inputs, outputs, and configuration. Key sections include:
   - **Inputs**: Optional parameters passed to the action, with default values and descriptions.
