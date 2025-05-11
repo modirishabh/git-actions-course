@@ -220,10 +220,19 @@ Both artifacts and cache help in making your CI/CD pipelines more efficient by m
 
 ## 8.1 Set up unit testing and code coverage, part 1
 
-- **Unit Testing:** Helps ensure that individual units of code function correctly by catching bugs early.
-- **Code Coverage:** Measures how much of your code is tested.
+**1.Unit Testing**
+**Purpose**: Unit testing helps you verify that individual parts (units) of your code work as expected.
+**Benefits**: It catches bugs early, ensures code stability, and makes the codebase more maintainable.
+**Tools**: Depending on the programming language, you can use tools like Jest (JavaScript), PyTest (Python), or JUnit (Java).
 
-**Tools:** Various tools are available for unit testing and code coverage, depending on the programming language (e.g., JavaScript, Python, Java).
+**1.1Code Coverage**
+**Purpose**: Code coverage measures how much of your code is tested by your unit tests.
+**Benefits**: It helps identify untested parts of your code where bugs might hide.
+**Tools**: Tools like Istanbul (JavaScript), Coverage.py (Python), and JaCoCo (Java) can be integrated into your workflow.
+
+**Why They Matter**
+**Early Bug Detection:** By committing code frequently and running tests, you can detect and fix bugs early.
+**Reduced Technical Debt:**e Ensuring your code is well-tested and covered reduces future maintenance and refactoring needs.
 
 ## 8.2 Set up unit testing and code coverage, part 2
 
