@@ -1,4 +1,4 @@
-name: composite
+name: DockerAction
 description: calculator to test actions
 
 inputs:
