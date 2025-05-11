@@ -1,28 +1,27 @@
-name: artifacts
+name: artifacts                              # Defines the name of the workflow as "artifacts"
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:                        # Configures this workflow to be manually triggered via GitHub UI
 
 jobs:
-  download-artifact:
-    needs: upload-artifact
-    name:  job to download-artifact
-    runs-on: ubuntu-latest
-    steps:
-      - uses:  actions/download-artifact@v4
+  download-artifact:                        # Defines a job named "download-artifact"
+    needs: upload-artifact                  # Specifies this job must run after the "upload-artifact" job completes
+    name: job to download-artifact          # Sets a human-readable name for this job
+    runs-on: ubuntu-latest                  # Specifies this job runs on the latest Ubuntu runner
+    steps:  
+      - uses: actions/download-artifact@v4            # Uses GitHub's download-artifact action (version 4)
         with:
-          name: my-artifact
-      - name: Dispaly structure pf download files
-        run: ls -R
-      - run: cat myartifact.txt
+          name: my-artifact                          # Specifies the artifact name to download
+      - name: Dispaly structure pf download files    # Sets a name for the next step (with a typo)
+        run: ls -R                                    # Lists all files recursively to show the downloaded content
+      - run: cat myartifact.txt                        # Displays the content of the downloaded artifact file
 
-  upload-artifact:
-    name: upload-artifact
-    runs-on: ubuntu-latest
+  upload-artifact:                                      # Defines a job named "upload-artifact"
+    name: upload-artifact                                # Sets a human-readable name for this job
+    runs-on: ubuntu-latest                              # Specifies this job runs on the latest Ubuntu runner
     steps:
-      - run: docker info > myartifact.txt
-      - uses: actions/upload-artifact@v4
+      - run: docker info > myartifact.txt                # Runs docker info command and saves output to myartifact.txt
+      - uses: actions/upload-artifact@v4                # Uses GitHub's upload-artifact action (version 4)
         with:
-          name: my-artifact
-          path: myartifact.txt
-          
+          name: my-artifact                              # Sets the name for the uploaded artifact
+          path: myartifact.txt                          # Specifies the file to upload as the artifact
