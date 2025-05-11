@@ -1,4 +1,4 @@
 grpcio==1.60.0
-catboost==1.2
-torch==2.1.0
-ray==2.9.0
+#catboost==1.2
+#torch==2.1.0
+#ray==2.9.0
