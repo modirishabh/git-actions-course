@@ -1,22 +1,22 @@
-name: chache
+name: chache                                      # Defines the name of the workflow as "chache" (note: has a typo, should be "cache")
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:                              # Configures this workflow to be manually triggered via GitHub UI
 
 jobs:
-  test-chache:
-    name: job to test chache
-    runs-on:  ubuntu-latest
+  test-chache:                                    # Defines a job named "test-chache" (note: has a typo, should be "cache")
+    name: job to test chache                      # Sets a human-readable name for this job
+    runs-on: ubuntu-latest                        # Specifies this job runs on the latest Ubuntu runner
     steps:
-      -  uses:  actions/checkout@v4
-      - uses: actions/cache@v4
-        id: generateChache
+      - uses: actions/checkout@v4                                             # Checks out the repository code to the runner
+      - uses: actions/cache@v4                                                # Uses GitHub's cache action (version 4) to cache dependencies
+        id: generateChache                                                    # Sets an ID for this step so its outputs can be referenced later
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-                  ${{ runner.os }}-pip-
-      -  run: pip install -r requirements.txt
-      -  name:  confirm chache
-         if: steps.generateChache.outputs.chache-hit == 'true'
-         run: echo chach entry found 
+          path: ~/.cache/pip                                                 # Specifies the path to cache (pip cache directory)
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}  # Creates a cache key based on OS and hash of requirements.txt
+          restore-keys: |                                                    # Fallback keys to use if the exact key match isn't found
+                  ${{ runner.os }}-pip-                                      # Will restore any cache with this prefix if exact match not found
+      - run: pip install -r requirements.txt                                 # Installs Python packages listed in requirements.txt file from the root folder
+      - name: confirm chache                                                 # Sets a name for the next step
+        if: steps.generateChache.outputs.chache-hit == 'true'                # Only runs this step if cache was found (note: has typo in "cache-hit")
+        run: echo chach entry found                                          # Prints confirmation message if cache was found (note: has typo in "cache")
