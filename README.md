@@ -1,4 +1,4 @@
-e# Git Actions Course
+# Git Actions Course
 
 ## Git Command Summary
 
