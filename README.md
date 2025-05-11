@@ -128,8 +128,8 @@ Both artifacts and cache help in making your CI/CD pipelines more efficient by m
 - **Management**: Both artifacts and cache can be managed via the GitHub web interface, REST API, and GitHub CLI.
 
 
-### 7.6 Explore the metadata file and composite actions, part 1
-Composite Actions
+### 7.6 Explore the metadata file and composite actions
+### 1. Composite Actions ###
 **Composite Actions**: These are reusable actions in GitHub that bundle multiple workflow steps into a single action. This helps in organizing and reusing code efficiently.
 
 **Metadata File (action.yaml)**
@@ -180,12 +180,28 @@ steps:
 
 Specifies that the action is composite and includes a step that runs a simple echo command.
 
+## 2. JavaScript Actions ###
+**JavaScript Actions**:
+These are actions you can create in GitHub Actions using JavaScript. They allow you to automate parts of your CI/CD pipeline with custom code.
 
-- **Composite Actions**: These bundle several workflow steps into a single reusable action, making workflows more modular and easier to manage.
-- **Metadata File (`action.yaml`)**: This file defines the action's inputs, outputs, and configuration. Key sections include:
-  - **Inputs**: Optional parameters passed to the action, with default values and descriptions.
-  - **Outputs**: Optional data produced by the action, identified by an ID and description.
-  - **Runs Section**: Specifies the type of action (composite in this case) and includes the steps to be executed.
+**Metadata File**:
+Just like composite actions, JavaScript actions require a metadata file (action.yml). This file includes inputs, outputs, and a runs section that specifies the runtime and the main script file.
+
+**Required Packages:**
+You need to have Node.js installed on your system.
+Install the @actions/core and @actions/github packages from the GitHub Actions toolkit using npm. These packages provide functions to interact with GitHub Actions workflows and the GitHub API.
+
+**Compiling with Vercel NCC:**
+The @vercel/ncc package is useful for compiling your Node.js modules into a single file. This simplifies the deployment process as you don't need to upload the entire node_modules directory.
+
+**Creating the Action**:
+In the action.yml file, specify the runtime (e.g., node16) and the main script file (e.g., index.js).
+You can also define pre and post-scripts that run before or after the main action.
+
+**Example Structure**:
+The JavaScript file imports the necessary packages and uses a try-catch block to execute the action's code.
+If an error occurs, it is caught and logged, and the action sets a failure exit code.
+
 
 ### 7.7 Explore the metadata file and composite actions, part 2
 - **Creating a Composite Action**: The video demonstrates how to create a composite action by setting up a new repository and adding an `action.yml` file at the root level.
